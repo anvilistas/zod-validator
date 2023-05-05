@@ -71,11 +71,11 @@
     }
   });
   
-  document.addEventListener('scroll', function(event) {
+  document.addEventListener('scroll', function() {
     if (appBar.classList.contains('scrolled')) {
       if (window.scrollY === 0) {
         appBar.classList.remove('scrolled')
-    	} 
+      }
     }
     else {
       appBar.classList.add('scrolled')
