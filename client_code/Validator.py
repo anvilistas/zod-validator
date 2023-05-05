@@ -12,10 +12,9 @@ class Validator:
         for key in schema.shape:
             self.inputs[key] = getattr(form, key + input_suffix)
             self.errors[key] = getattr(form, key + error_suffix)
+            on_change = self.change_handler(key)
+            self.inputs[key].add_event_handler("change", on_change)
 
-        for key, input in self.inputs.items():
-            change = self.change(key)
-            input.add_event_handler("change", change)
 
     def update_error(self, key, error):
         if not error:
@@ -29,14 +28,16 @@ class Validator:
 
     def reset(self, **event_args):
         self.form.item = {}
-        for input, error in zip(self.inputs.values(), self.errors.values()):
+        for key, input in self.inputs.items():
             set_input_value(input, None)
-            error.text = " "
+            self.errors[key].text = " "
 
-    def change(self, key):
+    def change_handler(self, key):
+
         def change(sender, **event_args):
             self.form.item[key] = get_input_value(sender)
             result = self.schema.safe_parse(self.form.item)
             self.submit_button.enabled = result.success
             self.update_error(key, result.error)
+
         return change

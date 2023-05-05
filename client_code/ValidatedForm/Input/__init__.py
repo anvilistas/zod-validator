@@ -1,12 +1,10 @@
 from ._anvil_designer import InputTemplate
-from anvil import *
 import anvil.server
 from ...input_helpers import get_input_value, set_input_value
 
 class Input(InputTemplate):
     def __init__(self, error=None, input=None, key="", title="", **properties):
         self.init_components(error=error, input=input, key=key, title=title, **properties)
-        self.label.text = title
         self.setup_input()
 
     def setup_input(self):
@@ -24,7 +22,6 @@ class Input(InputTemplate):
         if not error:
             self.error_label.text = " "
         else:
-            print(error, error.errors(self.key))
             self.error_label.text = "\n".join(error.errors(self.key)) or " "
 
     @property
@@ -37,3 +34,11 @@ class Input(InputTemplate):
 
     def change(self, **event_args):
         self.raise_event("change", key=self.key, value=self.value)
+
+    @property
+    def title(self):
+        return self.label.text
+
+    @title.setter
+    def title(self, value):
+        self.label.text = value
