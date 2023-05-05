@@ -1,0 +1,19 @@
+is_package: true
+container:
+  type: HtmlTemplate
+  properties: {html: '@theme:standard-page.html'}
+components:
+- type: FlowPanel
+  properties: {}
+  name: navbar_links
+  layout_properties: {slot: nav-right}
+- type: ColumnPanel
+  properties: {col_widths: '{}'}
+  name: content_panel
+  layout_properties: {slot: default}
+  components:
+  - type: form:ValidatedForm
+    properties: {}
+    name: validated_form
+    layout_properties: {grid_position: 'XJVJGF,TQIEUL'}
+    event_bindings: {submit: validated_form_submit}

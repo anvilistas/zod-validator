@@ -1,0 +1,16 @@
+dependencies:
+- app_id: C6ZZPAPN4YYF5NVJ
+  version: {dev: false}
+- app_id: 5YU7BBT6T5O7ZNOX
+  version: {dev: false}
+services:
+- source: /runtime/services/tables.yml
+  client_config: {}
+  server_config: {}
+startup: {type: form, module: _Example1}
+package_name: ZodValidationExample
+allow_embedding: false
+name: Clone of ZodValidationExample
+runtime_options: {version: 2, client_version: '3', server_version: python3-full, server_spec: null}
+startup_form: null
+renamed: true
