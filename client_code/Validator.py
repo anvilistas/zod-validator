@@ -1,4 +1,4 @@
-from .Inputs import set_input_value, get_input_value
+from .input_helpers import set_input_value, get_input_value
 
 class Validator:
     def __init__(self, form, schema, input_suffix="_input", error_suffix="_error", submit_button=None):

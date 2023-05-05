@@ -2,6 +2,7 @@ properties:
 - {name: input, type: object}
 - {name: key, type: string, default_value: ''}
 - {name: error, type: object}
+- {name: title, type: string, default_value: ''}
 is_package: true
 events:
 - {name: change}

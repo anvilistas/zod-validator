@@ -1,12 +1,12 @@
 from ._anvil_designer import InputTemplate
 from anvil import *
 import anvil.server
-from ..Inputs import get_input_value, set_input_value
+from ...input_helpers import get_input_value, set_input_value
 
 class Input(InputTemplate):
-    def __init__(self, error=None, input=None, key="", **properties):
-        self.init_components(error=error, input=input, key=key, **properties)
-        self.label.text = key.capitalize()
+    def __init__(self, error=None, input=None, key="", title="", **properties):
+        self.init_components(error=error, input=input, key=key, title=title, **properties)
+        self.label.text = title
         self.setup_input()
 
     def setup_input(self):

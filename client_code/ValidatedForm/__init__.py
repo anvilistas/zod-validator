@@ -2,12 +2,13 @@ from ._anvil_designer import ValidatedFormTemplate
 from anvil import *
 from anvil_extras import zod
 import anvil.server
-from ..Input import Input
+from .Input import Input
 
 class ValidatedForm(ValidatedFormTemplate):
     def __init__(self, **properties):
         self._zod_schema = zod.typed_dict({})
         self._input_schema = {}
+        self._title_schema = {}
         self.inputs = []
         self.init_components(**properties)
 
@@ -28,11 +29,20 @@ class ValidatedForm(ValidatedFormTemplate):
         self._input_schema = input_schema
         self.init_inputs()
 
+    @property
+    def title_schema(self):
+        return self._title_schema
+
+    @titles.setter
+    def title_schema(self, title_schema):
+        self._title_schema = title_schema
+
     def init_inputs(self):
         self.fields_panel.clear()
         self.inputs = []
         for key, input in self.input_schema.items():
-            input = Input(key=key, input=input)
+            title = self.title_schema.get(key, key.capitalize()
+            input = Input(key=key, input=input, title=title)
             input.add_event_handler("change", self.change)
             self.inputs.append(input)
             self.fields_panel.add_component(input)

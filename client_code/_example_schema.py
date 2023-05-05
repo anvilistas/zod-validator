@@ -1,6 +1,6 @@
 from anvil_extras import zod as z
 from datetime import date, timedelta
-from . import Inputs
+import anvil
 
 def to_upper(x):
     try:
@@ -14,14 +14,15 @@ user_schema = z.typed_dict(
         "email": z.string().strip().email(),
         "age": z.coerce.integer(invalid_type_error="Expected a valid age").ge(18).lt(100),
         "dob": z.date().max(date.today() - timedelta(days=365*18), "Must be older than 18"),
-        "color": z.not_required(z.preprocess(to_upper, z.enum(["RED", "GREEN", "BLUE"], invalid_type_error="Must be 'red', 'green' or 'blue'"))),
+        "color": z.preprocess(to_upper, z.enum(["RED", "GREEN", "BLUE"], invalid_type_error="Must be 'red', 'green' or 'blue'")),
     }
 )
 
-input_types = {
-    "name": Inputs.TEXT(),
-    "email": Inputs.EMAIL(),
-    "age": Inputs.NUMBER(),
-    "dob": Inputs.DATE(),
-    "color": Inputs.DROPDOWN(items=["RED", "GREEN", "BLUE"])
+# only for example 1
+user_inputs = {
+    "name": anvil.TextBox(),
+    "email": anvil.TextBox(type="email"),
+    "age": anvil.TextBox(type="number"),
+    "dob": anvil.DatePicker(format="DD-MM-YYYY"),
+    "color": anvil.DropDown(items=["Red", "Green", "Blue", "Orange"], include_placeholder=True)
 }
