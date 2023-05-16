@@ -59,6 +59,7 @@ class ValidatedForm(ValidatedFormTemplate):
     def submit_button_click(self, **event_args):
         try:
             self.submit_button.enabled = False
+            self._zod_schema.parse(self.item)
             self.raise_event("submit", item=self.item)
             for input in self.inputs.values():
                 input.value = None

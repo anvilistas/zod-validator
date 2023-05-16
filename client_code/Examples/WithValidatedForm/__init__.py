@@ -6,6 +6,7 @@ from ..schemas import user_schema, user_inputs, user_headings
 class WithValidatedForm(WithValidatedFormTemplate):
     def __init__(self, **properties):
         self.init_components(**properties)
+        # self.validated_form.item = {key: None for key in user_schema.shape}
         self.validated_form.input_schema = user_inputs
         self.validated_form.title_schema = user_headings
         self.validated_form.zod_schema = user_schema

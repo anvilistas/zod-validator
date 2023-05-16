@@ -8,7 +8,7 @@ user_schema = z.typed_dict(
         "email": z.string().strip().email(),
         "age": z.coerce.integer(invalid_type_error="Expected a valid age").ge(18).lt(100),
         "dob": z.date().max(date.today() - timedelta(days=365*18), "Must be older than 18"),
-        "color": z.string().upper().optional().pipe(z.enum(["RED", "GREEN", "BLUE"], invalid_type_error="Must be 'red', 'green' or 'blue'")),
+        "color": z.string().upper().optional().pipe(z.enum(["RED", "GREEN", "BLUE"], invalid_type_error="Must be 'red', 'green' or 'blue'")).optional(),
     }
 )
 
