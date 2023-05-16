@@ -1,6 +1,11 @@
-from ._anvil_designer import ValidatedFormTemplate
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2021 anvilistas
+
 from anvil_extras import zod
+
+from ._anvil_designer import ValidatedFormTemplate
 from .Input import Input
+
 
 class ValidatedForm(ValidatedFormTemplate):
     def __init__(self, **properties):

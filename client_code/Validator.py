@@ -1,7 +1,18 @@
-from .input_helpers import set_input_value, get_input_value
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2021 anvilistas
+
+from .input_helpers import get_input_value, set_input_value
+
 
 class Validator:
-    def __init__(self, form, schema, input_suffix="_input", error_suffix="_error", submit_button=None):
+    def __init__(
+        self,
+        form,
+        schema,
+        input_suffix="_input",
+        error_suffix="_error",
+        submit_button=None,
+    ):
         self.inputs = {}
         self.errors = {}
         self.form = form
@@ -14,7 +25,6 @@ class Validator:
             self.errors[key] = getattr(form, key + error_suffix)
             on_change = self.change_handler(key)
             self.inputs[key].add_event_handler("change", on_change)
-
 
     def update_error(self, key, error):
         if not error:
@@ -33,7 +43,6 @@ class Validator:
             self.errors[key].text = " "
 
     def change_handler(self, key):
-
         def change(sender, **event_args):
             self.form.item[key] = get_input_value(sender)
             result = self.schema.safe_parse(self.form.item)

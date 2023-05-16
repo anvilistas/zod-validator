@@ -1,10 +1,17 @@
-from ._anvil_designer import InputTemplate
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2021 anvilistas
+
 import anvil.server
+
 from ...input_helpers import get_input_value, set_input_value
+from ._anvil_designer import InputTemplate
+
 
 class Input(InputTemplate):
     def __init__(self, error=None, input=None, key="", title="", **properties):
-        self.init_components(error=error, input=input, key=key, title=title, **properties)
+        self.init_components(
+            error=error, input=input, key=key, title=title, **properties
+        )
         self.setup_input()
 
     def setup_input(self):
