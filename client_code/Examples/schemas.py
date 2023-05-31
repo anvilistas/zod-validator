@@ -30,8 +30,7 @@ user_schema = z.typed_dict(
                 ["RED", "GREEN", "BLUE"],
                 invalid_type_error="Must be 'red', 'green' or 'blue'",
             )
-        )
-        .optional(),
+        ),
     }
 )
 
