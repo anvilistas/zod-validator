@@ -12,7 +12,10 @@ class ValidatedForm(ValidatedFormTemplate):
         self._zod_schema = zod.typed_dict({})
         self._input_schema = {}
         self._title_schema = {}
+        self._toggle_enabled = properties.get("toggle_submit_enabled", False)
         self.inputs = {}
+        if self._toggle_enabled:
+            self.submit_button.enabled = False
         self.init_components(**properties)
 
     @property
@@ -58,7 +61,8 @@ class ValidatedForm(ValidatedFormTemplate):
     def change(self, key, value, sender, **event_args):
         self.item[key] = value
         result = self._zod_schema.safe_parse(self.item)
-        self.submit_button.enabled = result.success
+        if self._toggle_enabled:
+            self.submit_button.enabled = result.success
         sender.error = result.error
 
     def submit_button_click(self, **event_args):
@@ -72,3 +76,6 @@ class ValidatedForm(ValidatedFormTemplate):
         except zod.ParseError as e:
             for input in self.inputs.values():
                 input.error = e
+
+        finally:
+            self.submit_button.enabled = not self._toggle_enabled

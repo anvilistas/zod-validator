@@ -1,6 +1,7 @@
 properties:
 - {name: zod_schema, type: object, default_binding_prop: true}
 - {name: input_schema, type: object}
+- {name: toggle_submit_enabled, type: boolean, default_value: false}
 is_package: true
 events:
 - {name: submit, default_event: true, description: When the submit button is clicked}
@@ -22,7 +23,7 @@ components:
       name: repeating_panel_1
       layout_properties: {}
   - type: Button
-    properties: {role: filled-button, align: center, tooltip: '', border: '', enabled: false,
+    properties: {role: filled-button, align: center, tooltip: '', border: '', enabled: true,
       foreground: '', visible: true, text: Submit, font_size: null, font: '', spacing_above: small,
       icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
       underline: false, icon: ''}

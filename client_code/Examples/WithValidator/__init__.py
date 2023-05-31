@@ -18,6 +18,7 @@ class WithValidator(WithValidatorTemplate):
 
     def submit_button_click(self, **event_args):
         try:
+            user_schema.parse(self.item)
             anvil.server.call("add_data", self.item)
             self.validator.reset()
         except z.ParseError as e:
