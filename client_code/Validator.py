@@ -28,7 +28,9 @@ class Validator:
 
         for key in schema.shape:
             self.inputs[key] = getattr(form, input_prefix + key + input_suffix)
-            self.errors[key] = getattr(form, error_prefix + key + error_suffix)
+            error_label = getattr(form, error_prefix + key + error_suffix)
+            error_label.text = " "
+            self.errors[key] = error_label
             on_change = self.change_handler(key)
             self.inputs[key].add_event_handler("change", on_change)
 
