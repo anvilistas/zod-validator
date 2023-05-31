@@ -5,7 +5,7 @@ services:
 - source: /runtime/services/tables.yml
   client_config: {}
   server_config: {}
-startup: {type: form, module: Examples.WithValidator}
+startup: {type: form, module: Examples.WithValidatedForm}
 package_name: ZodValidationExample
 allow_embedding: false
 name: ZodValidator

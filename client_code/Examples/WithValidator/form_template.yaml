@@ -128,7 +128,7 @@ components:
           - type: TextBox
             properties: {role: null, align: left, hide_text: false, tooltip: '', placeholder: '',
               border: '', enabled: true, foreground: '', visible: true, text: '',
-              font_size: null, font: '', spacing_above: none, type: text, spacing_below: none,
+              font_size: null, font: '', spacing_above: none, type: number, spacing_below: none,
               italic: false, background: '', bold: false, underline: false}
             name: age_input
             layout_properties: {grid_position: 'YKHYBE,UNFQLY', expand: true, width: null}
@@ -230,7 +230,3 @@ components:
       name: submit_button
       layout_properties: {grid_position: 'DCCMAV,BYAEZM'}
       event_bindings: {click: submit_button_click}
-- type: FlowPanel
-  properties: {}
-  name: navbar_links
-  layout_properties: {slot: nav-right}
