@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: MIT
 # Copyright (c) 2021 anvilistas
-
+import anvil
 import anvil.server
 
 from ...input_helpers import get_input_value, set_input_value
@@ -16,6 +16,11 @@ class Input(InputTemplate):
 
     def setup_input(self):
         self.input_panel.clear()
+        if callable(self.input):
+            self.input = self.input()
+        if isinstance(self.input, anvil.Component):
+            self.input.remove_from_parent()
+
         self.input_panel.add_component(self.input, expand=True)
         self.input.add_event_handler("change", self.change)
 

@@ -36,11 +36,11 @@ user_schema = z.typed_dict(
 
 #### only for example 1 ####
 user_inputs = {
-    "name": anvil.TextBox(),
-    "email": anvil.TextBox(type="email"),
-    "age": anvil.TextBox(type="number"),
-    "dob": anvil.DatePicker(format="DD-MM-YYYY"),
-    "color": anvil.DropDown(
+    "name": lambda: anvil.TextBox(),
+    "email": lambda: anvil.TextBox(type="email"),
+    "age": lambda: anvil.TextBox(type="number"),
+    "dob": lambda: anvil.DatePicker(format="DD-MM-YYYY"),
+    "color": lambda: anvil.DropDown(
         items=["Red", "Green", "Blue", "Orange"], include_placeholder=True
     ),
 }
